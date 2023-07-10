@@ -1,0 +1,44 @@
+@define-color	focusColor #D5BEF1;
+@define-color	poweroffColor #F77D7D;
+
+* {
+  background-image: none;
+}
+
+window {
+  background-color: rgba(12, 13, 19, 0.93);
+}
+
+button {
+  margin: 200px 5px 250px 5px;
+  font-family: "Exo2 Nerd Font";
+  background-color: #16161E;
+  color: #272736;
+  font-size: 120px;
+  box-shadow: none;
+}
+
+#suspend, #reboot, #lock, #shutdown {
+  padding: 5px 20px 5px 20px;
+}
+
+#logout {
+  font-size: 109px;
+  padding: 5px 20px 5px 20px;
+}
+
+button:focus#reboot, button:hover#reboot, 
+button:focus#suspend, button:hover#suspend, 
+button:focus#lock, button:hover#lock,
+button:focus#logout, button:hover#logout { 
+  box-shadow:  0px 10px @focusColor; 
+  border-color: @focusColor;
+  color: @focusColor;
+}
+
+button:focus#shutdown, button:active#shutdown, button:hover#shutdown {
+  box-shadow:  0px 10px @poweroffColor;
+  outline-style: solid;
+  border-color: @poweroffColor;
+  color: @poweroffColor; 
+} 

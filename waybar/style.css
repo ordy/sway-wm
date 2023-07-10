@@ -1,0 +1,283 @@
+@define-color rp-base #191724;
+@define-color rp-overlay #26233a;
+@define-color rp-subtile #908caa;
+@define-color rp-text #e0def4;
+@define-color rp-white #FFFFFF;
+@define-color rp-love #eb6f92;
+@define-color rp-gold #f6c177;
+@define-color rp-rose #ebbcba;
+@define-color rp-pine #31748f;
+@define-color rp-foam #9ccfd8;
+@define-color rp-iris #c4a7e7;
+
+/* Shades */
+@define-color volume #393656;
+@define-color bat #2F2C47;
+
+* {
+	border: none;
+	font-family: 'SourceSans3VF','Symbols Nerd Font';
+	font-size: 14px;
+  font-weight: 600;
+	margin: 0px;
+	padding: 0px;
+	border-radius: 0;
+}
+
+window#waybar {
+	background-color: @rp-base;
+	color: @rp-text;
+	transition-property: background-color;
+	transition-duration: .5s;
+}
+
+#workspaces > button:last-child {
+	padding-right: 5px;
+}
+#workspaces > button:first-child {
+	padding-left: 7px;
+}
+
+#workspaces button {
+	padding: 0px 2px 0px 2px;
+	margin: -2px 0px;
+	background-color: @rp-overlay;
+}
+
+#workspaces button:hover label {
+	color: #B8B4CF;
+}
+
+#workspaces button.focused {
+	color: @rp-text;
+}
+
+#workspaces button.urgent {
+	color: @rp-foam;
+}
+
+#workspaces button#sway-workspace-1.persistent,
+#workspaces button#sway-workspace-2.persistent,
+#workspaces button#sway-workspace-3.persistent,
+#workspaces button#sway-workspace-4.persistent,
+#workspaces button#sway-workspace-5.persistent {
+  color: #6e6a86;
+}
+
+#workspaces button.focused label {
+  color: white;
+}
+
+#workspaces button#sway-workspace-1 {
+  color: @rp-love;
+}
+
+#workspaces button#sway-workspace-2 {
+  color: @rp-gold;
+}
+
+#workspaces button#sway-workspace-3 {
+  color: @rp-rose;
+}
+
+#workspaces button#sway-workspace-4 {
+  color: @rp-foam;
+}
+
+#workspaces button#sway-workspace-5 {
+  color: @rp-iris;
+}
+
+tooltip {
+	border: 2px solid @rp-text;
+	background-color: @rp-overlay;
+}
+
+/***** Separators  *****/
+#custom-sep0,
+#custom-sep1,
+#custom-sep3,
+#custom-sep4,
+#custom-sep5,
+#custom-sep6 {
+	margin-top: -32px;
+	margin-bottom: -36px;
+	margin-right: -12px;
+	font-size: 28px;
+}
+
+#custom-sep0 {
+	color: @rp-overlay;
+	background-color: transparent;
+}
+#custom-sep1 {
+	color: @rp-base;
+	background-color: @rp-overlay;
+}
+
+#custom-sep3 {
+	color: @volume;
+	background-color: transparent;
+}
+
+#custom-sep4 {
+	color: @bat;
+	background-color: @volume;
+}
+
+#custom-sep5 {
+	color: @rp-overlay;
+	background-color: @bat;
+}
+
+#custom-sep6 {
+	color: @rp-base;
+	background-color: @rp-overlay;
+}
+/**************/
+
+#clock {
+	background-color: @rp-base;
+}
+
+#battery {
+	background-color: @bat;
+	color: @rp-text;
+	padding-left: 7px;
+}
+
+#battery.charging,
+#battery.plugged {
+	color: @rp-text;
+	background-color: @bat;
+	padding-left: 7px;
+}
+
+@keyframes blink {
+	to {
+		color: @rp-love;
+	}
+}
+
+#battery.critical:not(.charging) {
+	background-color: @bat;
+	color: @rp-text;
+	animation-name: blink;
+	animation-duration: 0.5s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
+}
+
+label:disabled,
+button:disabled {
+	all: unset;
+	min-width: 0;
+}
+
+#cpu,
+#memory,
+#temperature {
+	margin-right: 12px;
+}
+
+#cpu,
+#memory,
+#temperature,
+#backlight,
+#custom-weather,
+#custom-artist,
+#custom-title {
+  background-color: transparent;
+}
+
+#cpu {
+	color: @rp-love;
+}
+
+#memory {
+	color: @rp-gold;
+}
+
+#custom-launcher {
+	color: @rp-text;
+	background-color: transparent;
+}
+
+#temperature {
+	color: @rp-rose;
+}
+
+#temperature.critical {
+	color: @rp-rose;
+}
+
+#backlight {
+	color: @rp-foam;
+	margin-right: 10px;
+}
+
+#custom-weather {
+	color: @rp-iris;
+}
+
+#pulseaudio,
+#battery,
+#network,
+#clock {
+	padding-left: 7px;
+	padding-right: 7px;
+}
+
+#custom-launcher {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+#tray,
+#network {
+	background-color: @rp-overlay;
+}
+
+#tray {
+	padding-right: 7px;
+	margin-top: -14px;
+	margin-bottom: -14px;
+}
+
+#network,
+#battery,
+#pulseaudio,
+#custom-launcher {
+  margin-top: -5px;
+  margin-bottom: -5px;
+}
+
+#network.disconnected {
+  color: #474360;
+	margin: -10px 0px -10px 0px;
+}
+
+#pulseaudio {
+	background-color: @volume;
+  color: @rp-text;
+}
+
+#pulseaudio.muted {
+	color: #7A7797;
+}
+
+#custom-artist {
+  font-size: 15px;
+	color: white;
+	margin: 0px;
+	padding-right: 4px;
+  padding-left: 5px;
+}
+
+#custom-title {
+  color: #C1BED6;
+  font-size: 15px;
+	margin: 0px;
+}
+

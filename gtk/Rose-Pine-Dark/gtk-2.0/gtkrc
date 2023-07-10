@@ -1,0 +1,31 @@
+gtk-color-scheme = "text_color: #d8dee9"
+gtk-color-scheme = "base_color: #13111d"
+gtk-color-scheme = "fg_color: #d8dee9"
+gtk-color-scheme = "bg_color: #191724"
+gtk-color-scheme = "wm_color: #191724"
+gtk-color-scheme = "unfocused_wm_color: #21202e"
+gtk-color-scheme = "selected_fg_color: #d8dee9"
+gtk-color-scheme = "selected_bg_color: #524f67"
+gtk-color-scheme = "tooltip_fg_color: #f8f8f2"
+gtk-color-scheme = "tooltip_bg_color: #21202e"
+gtk-color-scheme = "panel_bg_color: #282128"
+gtk-color-scheme = "panel_fg_color: #d8dee9"
+gtk-color-scheme = "dark_text_color: #d8dee9"
+gtk-color-scheme = "dark_base_color: #26233a"
+gtk-color-scheme = "dark_fg_color: #d8dee9"
+gtk-color-scheme = "dark_bg_color: #11101a"
+gtk-color-scheme = "sidebar_bg: #26233a"
+gtk-color-scheme = "sidebar_fg: #d8dee9"
+
+gtk-auto-mnemonics = 1
+gtk-primary-button-warps-slider = 1
+
+include "main.rc"
+
+# App stylings
+include "apps/chrome.rc"
+include "apps/gimp.rc"
+include "apps/libreoffice.rc"
+include "apps/terminal.rc"
+include "apps/thunar.rc"
+include "apps/xfce.rc"

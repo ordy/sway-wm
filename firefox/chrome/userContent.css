@@ -1,0 +1,38 @@
+/* 
+┌─┐┬┌┬┐┌─┐┬  ┌─┐
+└─┐││││├─┘│  ├┤ 
+└─┘┴┴ ┴┴  ┴─┘└─┘
+┌─┐┌─┐─┐ ┬      
+├┤ │ │┌┴┬┘      
+└  └─┘┴ └─
+
+by Miguel Avila
+
+*/
+
+:root {
+  /* scrollbar-width: none !important; */
+}
+
+@-moz-document url(about:privatebrowsing) {
+  :root {
+    /* scrollbar-width: none !important; */
+  }
+}
+
+menuitem#context-selectall + menuseparator {
+  display: none !important;
+}
+
+.fake-editable {
+	background-color: #21202e !important;
+}
+
+.search-wrapper.fake-focus:not(.search.disabled) .search-handoff-button {
+	border: 1px solid #31748f !important;
+	box-shadow: 0 0 0 2px #22343c !important;
+}
+
+.search-wrapper .search-handoff-button, .search-wrapper input {
+	background: #21202e var(--newtab-search-icon) 16px center no-repeat !important;
+}

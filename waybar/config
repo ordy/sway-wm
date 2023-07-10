@@ -1,0 +1,202 @@
+//# vi: ft=jsonc
+{
+  "layer": "top",
+  "position": "top",
+  "modules-left": [
+    "custom/launcher",
+    "custom/sep0",
+    "sway/workspaces",
+    "custom/sep1",
+    "sway/mode",
+    "custom/artist",
+    "custom/title"
+  ],
+  "modules-center": [
+    "cpu",
+    "memory",
+    "temperature",
+    "backlight",
+    "custom/weather"
+  ],
+  "modules-right": [
+    "custom/sep3",
+    "pulseaudio",
+    "custom/sep4",
+    "battery",
+    "custom/sep5",
+    "network",
+    "tray",
+    "custom/sep6",
+    "clock"
+  ],
+  "sway/workspaces": {
+    "disable-scroll": true,
+    "all-outputs": true,
+    "format": "{icon}",
+    "format-icons": {
+      "1": "<span font='11'></span>",
+      "2": "<span font='11'></span>",
+      "3": "<span font='11'></span>",
+      "4": "<span font='11'></span>",
+      "5": "<span font='11'></span>",
+      "default": "",
+      "focused": "",
+      "visible": ""
+    },
+    "persistent_workspaces": {
+      "1": [],
+      "2": [],
+      "3": [],
+      "4": [],
+      "5": []
+    }
+  },
+  "sway/mode": {
+    "format": "{}"
+  },
+  "custom/sep0": {
+    "format": "",
+    "tooltip": false
+  },
+  "custom/sep1": {
+    "format": "",
+    "tooltip": false
+  },
+  "custom/sep3": {
+    "format": "",
+    "tooltip": false
+  },
+  "custom/sep4": {
+    "format": "",
+    "tooltip": false
+  },
+  "custom/sep5": {
+    "format": "",
+    "tooltip": false
+  },
+  "custom/sep6": {
+    "format": "",
+    "tooltip": false
+  },
+  "tray": {
+    "icon-size": 17,
+    "spacing": 10
+  },
+  "clock": {
+    "format": "{:%a, %d %b • <b>%H:%M</b>}",
+    "timezone": "Europe/Brussels",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt>{calendar}</tt>"
+  },
+  "cpu": {
+    "format": "{usage}% "
+  },
+  "memory": {
+    "format": "{percentage}% "
+  },
+  "temperature": {
+    "critical-threshold": 85,
+    "format": "{temperatureC}°C <span font='12'>󰈸</span>"
+  },
+  "backlight": {
+    "on-scroll-up": "light -s sysfs/backlight/acpi_video0 -A 10",
+    "on-scroll-down": "light -s sysfs/backlight/acpi_video0 -U 10",
+    "device": "acpi_video0",
+    "format": "{percent}% <span font='10' rise='-1100'></span>",
+    "format-icons": [
+      "",
+      ""
+    ]
+  },
+  "battery": {
+    "states": {
+      // "good": 95,
+      "warning": 30,
+      "critical": 15
+    },
+    "full-at": 80,
+    "format": "{icon}",
+    "format-alt": "{capacity} <span font='11'>󱐋</span> {icon}",
+    "format-charging": "{capacity} <span font='11'>󱐋</span> {icon}",
+    "format-plugged": "<span font='10'></span>",
+    "tooltip-format": "{capacity}",
+    // "format-good": "", // An empty format will hide the module
+    // "format-full": "",
+    "format-icons": [
+      "<span font='11'></span>",
+      "<span font='11'></span>",
+      "<span font='11'></span>",
+      "<span font='11'></span>",
+      "<span font='11'></span>"
+    ],
+    "on-click": "{alt}",
+    "tooltip": true
+  },
+  "network": {
+    "format-wifi": "<span font='11'>󰖩</span>",
+    "format-ethernet": "{ifname}: {ipaddr}/{cidr} asdasd",
+    "format-linked": "{ifname} (No IP) ",
+    "format-disconnected": "<span font='11'>󰖪</span>",
+    "format-alt": "{ifname} on {essid}: {ipaddr}/{cidr}",
+    "on-click-right": "kitty -e nmtui",
+    "tooltip": false
+  },
+  "pulseaudio": {
+    // "scroll-step": 1, // %, can be a float
+    "format": "{icon}",
+    "format-alt": "{format_source}   {volume}%  {icon}",
+    "format-bluetooth": "<span font='11' rise='-800'>󰂰</span>",
+    "format-bluetooth-muted": "<span font='11' rise='-800'>󰂰</span>",
+    "format-muted": " {format_source}",
+    "format-source": "{volume}%  <span font='11'>󰍰</span>",
+    "format-source-muted": "<span font='11'>󰍱</span>",
+    "format-icons": {
+      "headphone": "<span font='11'>󰋋 </span>",
+      "hands-free": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": [
+        "<span font='12'>󰜟</span>"
+      ]
+    },
+    "on-click": "{alt}",
+    "on-click-right": "pavucontrol",
+    "on-scroll-up": "pactl set-sink-volume 0 +5% && pactl get-sink-volume 0 | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > $XDG_RUNTIME_DIR/wob.sock",
+    "on-scroll-down": "pactl set-sink-volume 0 -5% && pactl get-sink-volume 0 | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > $XDG_RUNTIME_DIR/wob.sock"
+  },
+  "custom/weather": {
+    "format": "{} <span font='14' rise='-800'> </span>",
+    "format-alt": "{alt}",
+    "format-alt-click": "click-right",
+    "interval": 1000,
+    "return-type": "json",
+    "tooltip": true,
+    "exec": "~/.config/waybar/modules/weather.sh",
+    "exec-if": "ping wttr.in -c1"
+  },
+  "custom/artist": {
+    "format": "{}",
+    "return-type": "json",
+    "max-length": 28,
+    "escape": true,
+    "on-click": "mediactl previous",
+    "on-click-right": "mediactl next",
+    "exec": "~/.config/waybar/modules/mediaplayer_a.py 2> /dev/null" // Script in resources folder
+  },
+  "custom/title": {
+    "format": "{}",
+    "return-type": "json",
+    "max-length": 35,
+    "escape": true,
+    "on-click": "mediactl previous",
+    "on-click-right": "mediactl next",
+    "exec": "~/.config/waybar/modules/mediaplayer_t.py 2> /dev/null" // Script in resources folder
+  },
+  "custom/launcher": {
+    "format": "<span font='15'>󰐅</span>",
+    "on-click": "tofi-drun | xargs swaymsg exec --",
+    "on-click-right": "wlogout -b 5 -p layer-shell",
+    "tooltip": false
+  }
+}
