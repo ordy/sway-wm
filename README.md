@@ -1,7 +1,9 @@
 # sway-wm
 A dark and soft sway wm theme inspired by the Rosé-Pine color palette.
 
-#### Installation
+## WIP
+
+#### GTK theme
 
 Extract the zip file to the themes directory i.e. `/usr/share/themes/` or `~/.themes/` (create it if necessary).
 
