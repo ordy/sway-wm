@@ -1,18 +1,18 @@
-@define-color rp-base #191724;
-@define-color rp-overlay #26233a;
-@define-color rp-subtile #908caa;
-@define-color rp-text #e0def4;
-@define-color rp-white #FFFFFF;
-@define-color rp-love #eb6f92;
-@define-color rp-gold #f6c177;
-@define-color rp-rose #ebbcba;
-@define-color rp-pine #31748f;
-@define-color rp-foam #9ccfd8;
-@define-color rp-iris #c4a7e7;
+@define-color kana-base #0F101A;
+@define-color kana-overlay #1E2031;
+@define-color kana-subtile #3D415A;
+@define-color kana-text #D8DADF;
+@define-color kana-white #FFFFFF;
+@define-color kana-red #FF5D62;
+@define-color kana-pink #FFA066;
+@define-color kana-purple #E6C384;
+@define-color kana-blue #9CAE75;
+@define-color kana-green #7AA89F;
+@define-color kana-yellow #A7D7DE;
 
 /* Shades */
-@define-color volume #393656;
-@define-color bat #2F2C47;
+@define-color volume #393E5B;
+@define-color bat #2B2E49;
 
 * {
 	border: none;
@@ -25,8 +25,8 @@
 }
 
 window#waybar {
-	background-color: @rp-base;
-	color: @rp-text;
+	background-color: @kana-base;
+	color: @kana-text;
 	transition-property: background-color;
 	transition-duration: 0.5s;
 }
@@ -42,18 +42,19 @@ window#waybar {
 	padding: 0px 2px 0px 2px;
 	margin: -2px 0px;
 	min-width: 15px;
+	background-color: @kana-overlay;
 }
 
 #workspaces button:hover label {
-	color: #B8B4CF;
+	color: #959da5;
 }
 
 #workspaces button.focused {
-	color: @rp-text;
+	color: @kana-text;
 }
 
 #workspaces button.urgent {
-	color: @rp-foam;
+	color: @kana-blue;
 }
 
 #workspaces button#sway-workspace-1.persistent,
@@ -61,36 +62,36 @@ window#waybar {
 #workspaces button#sway-workspace-3.persistent,
 #workspaces button#sway-workspace-4.persistent,
 #workspaces button#sway-workspace-5.persistent {
-  color: #6e6a86;
+	color: @kana-subtile;
 }
 
 #workspaces button.focused label {
-  color: white;
+	color: @kana-white;
 }
 
 #workspaces button#sway-workspace-1 {
-  color: @rp-love;
+	color: @kana-red;
 }
 
 #workspaces button#sway-workspace-2 {
-  color: @rp-gold;
+	color: @kana-pink;
 }
 
 #workspaces button#sway-workspace-3 {
-  color: @rp-rose;
+	color: @kana-purple;
 }
 
 #workspaces button#sway-workspace-4 {
-  color: @rp-foam;
+	color: @kana-blue;
 }
 
 #workspaces button#sway-workspace-5 {
-  color: @rp-iris;
+	color: @kana-green;
 }
 
 tooltip {
-	border: 2px solid @rp-text;
-	background-color: @rp-overlay;
+	border: 2px solid @kana-text;
+	background-color: @kana-overlay;
 }
 
 /***** Separators  *****/
@@ -107,12 +108,12 @@ tooltip {
 }
 
 #custom-sep0 {
-	color: @rp-overlay;
+	color: @kana-overlay;
 	background-color: transparent;
 }
 #custom-sep1 {
-	color: @rp-base;
-	background-color: @rp-overlay;
+	color: @kana-base;
+	background-color: @kana-overlay;
 }
 
 #custom-sep3 {
@@ -126,42 +127,42 @@ tooltip {
 }
 
 #custom-sep5 {
-	color: @rp-overlay;
+	color: @kana-overlay;
 	background-color: @bat;
 }
 
 #custom-sep6 {
-	color: @rp-base;
-	background-color: @rp-overlay;
+	color: @kana-base;
+	background-color: @kana-overlay;
 }
 /**************/
 
 #clock {
-	background-color: @rp-base;
+	background-color: @kana-base;
 }
 
 #battery {
 	background-color: @bat;
-	color: @rp-text;
+	color: @kana-text;
 	padding-left: 7px;
 }
 
 #battery.charging,
 #battery.plugged {
-	color: @rp-text;
+	color: @kana-text;
 	background-color: @bat;
 	padding-left: 7px;
 }
 
 @keyframes blink {
 	to {
-		color: @rp-love;
+		color: @kana-red;
 	}
 }
 
 #battery.critical:not(.charging) {
 	background-color: @bat;
-	color: @rp-text;
+	color: @kana-text;
 	animation-name: blink;
 	animation-duration: 0.5s;
 	animation-timing-function: linear;
@@ -189,42 +190,46 @@ button:disabled {
 #temperature,
 #backlight,
 #custom-weather,
+#custom-pacman,
 #custom-artist,
 #custom-title {
-  background-color: transparent;
+	background-color: transparent;
 }
 
 #cpu {
-	color: @rp-love;
+	color: @kana-red;
 }
 
 #memory {
-	color: @rp-gold;
+	color: @kana-pink;
 }
 
 #custom-launcher {
-	color: @rp-text;
+	color: @kana-white;
 	background-color: transparent;
 }
 
 #temperature {
-	color: @rp-rose;
+	color: @kana-purple;
 }
 
 #temperature.critical {
-	color: @rp-rose;
+	color: @kana-purple;
 }
 
 #backlight {
-	color: @rp-foam;
+	color: @kana-green;
 	margin-right: 10px;
 }
 
 #custom-weather {
-	color: @rp-iris;
+	color: @kana-yellow;
 	margin-top: -5px;
+	margin-bottom: -5px;
+}
 
 #custom-pacman {
+	color: @kana-blue;
 	margin-right: 7px;
 	margin-top: -5px;
 	margin-bottom: -5px;
@@ -245,7 +250,7 @@ button:disabled {
 
 #tray,
 #network {
-	background-color: @rp-overlay;
+	background-color: @kana-overlay;
 }
 
 #tray {
@@ -263,29 +268,29 @@ button:disabled {
 }
 
 #network.disconnected {
-  color: #474360;
+	color: #656f7a;
 	margin: -10px 0px -10px 0px;
 }
 
 #pulseaudio {
 	background-color: @volume;
-  color: @rp-text;
+	color: @kana-text;
 }
 
 #pulseaudio.muted {
-	color: #7A7797;
+	color: #8f9baa;
 }
 
 #custom-artist {
-  font-size: 15px;
-	color: white;
+	font-size: 15px;
+	color: @kana-text;
 	margin: 0px;
 	padding-right: 4px;
 	padding-left: 5px;
 }
 
 #custom-title {
-  color: #C1BED6;
+	color: #8E939B;
 	font-size: 15px;
 	margin: 0px;
 }
@@ -316,14 +321,14 @@ highlight {
 }
 
 #pulseaudio-slider trough {
-	background-color: @rp-base;
+	background-color: @kana-base;
 }
 #pulseaudio-slider highlight {
-	background-color: @rp-text;
+	background-color: @kana-text;
 }
 
 #custom-recorder {
 	font-size: 15px;
 	margin: 2px 7px 0px 7px;
-	color: @rp-red;
+	color: @kana-red;
 }
