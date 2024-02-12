@@ -15,12 +15,14 @@
     "cpu",
     "memory",
     "temperature",
+    "custom/pacman",
     "backlight",
     "custom/weather"
   ],
   "modules-right": [
+    "custom/recorder",
     "custom/sep3",
-    "pulseaudio",
+    "group/pulse-group",
     "custom/sep4",
     "battery",
     "custom/sep5",
@@ -40,7 +42,7 @@
       "4": "<span font='11'></span>",
       "5": "<span font='11'></span>",
       "default": "",
-      "focused": "",
+      "focused": "<span font='11'></span>",
       "visible": ""
     },
     "persistent_workspaces": {
@@ -85,7 +87,25 @@
   "clock": {
     "format": "{:%a, %d %b • <b>%H:%M</b>}",
     "timezone": "Europe/Brussels",
-    "tooltip-format": "<big>{:%Y %B}</big>\n<tt>{calendar}</tt>"
+    "smooth-scrolling-threshold": 4,
+    "calendar": {
+      "mode-mon-col": 2,
+      "weeks-pos": "left",
+      "on-scroll": 1,
+      "on-click-right": "mode",
+      "format": {
+        "months": "<span color='#b6e3ff'><b>{}</b></span>",
+        "weeks": "<span color='#ecd8ff'><b>{}</b></span>",
+        "weekdays": "<span color='#80ccff'><b>{}</b></span>",
+        "today": "<span color='#ffb77c' background='#363D46'><b>{}</b></span>"
+      }
+    },
+    "actions": {
+      "on-click-right": "mode",
+      "on-scroll-up": "shift_up",
+      "on-scroll-down": "shift_down"
+    },
+    "tooltip-format": "<tt>{calendar}</tt>"
   },
   "cpu": {
     "format": "{usage}% "
@@ -95,17 +115,20 @@
   },
   "temperature": {
     "critical-threshold": 85,
-    "format": "{temperatureC}°C <span font='12'>󰈸</span>"
+    "format": "{temperatureC}°C <span font='12'>󰈸</span>",
+    "tooltip": false
   },
   "backlight": {
-    "on-scroll-up": "light -s sysfs/backlight/acpi_video0 -A 10",
-    "on-scroll-down": "light -s sysfs/backlight/acpi_video0 -U 10",
-    "device": "acpi_video0",
+    "on-scroll-up": "backlightcmd up",
+    "on-scroll-down": "backlightcmd down",
+    "device": "intel_backlight",
     "format": "{percent}% <span font='10' rise='-1100'></span>",
     "format-icons": [
       "",
       ""
-    ]
+    ],
+    "smooth-scrolling-threshold": 2.5,
+    "tooltip": false
   },
   "battery": {
     "states": {
@@ -140,8 +163,19 @@
     "on-click-right": "kitty -e nmtui",
     "tooltip": false
   },
+  "group/pulse-group": {
+    "orientation": "inherit",
+    "drawer": {
+      "transition-duration": 300,
+      "children-class": "drawer-child",
+      "transition-left-to-right": false
+    },
+    "modules": [
+      "pulseaudio",
+      "pulseaudio/slider"
+    ]
+  },
   "pulseaudio": {
-    // "scroll-step": 1, // %, can be a float
     "format": "{icon}",
     "format-alt": "{format_source}   {volume}%  {icon}",
     "format-bluetooth": "<span font='11' rise='-800'>󰂰</span>",
@@ -160,10 +194,16 @@
         "<span font='12'>󰜟</span>"
       ]
     },
-    "on-click": "{alt}",
+    "smooth-scrolling-threshold": 0.8,
+    "tooltip": false,
     "on-click-right": "pavucontrol",
-    "on-scroll-up": "pactl set-sink-volume 0 +5% && pactl get-sink-volume 0 | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > $XDG_RUNTIME_DIR/wob.sock",
-    "on-scroll-down": "pactl set-sink-volume 0 -5% && pactl get-sink-volume 0 | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > $XDG_RUNTIME_DIR/wob.sock"
+    "on-scroll-up": "pactl set-sink-volume 0 +5%",
+    "on-scroll-down": "pactl set-sink-volume 0 -5%"
+  },
+  "pulseaudio/slider": {
+    "min": 0,
+    "max": 100,
+    "orientation": "horizontal"
   },
   "custom/weather": {
     "format": "{} <span font='14' rise='-800'> </span>",
@@ -174,6 +214,16 @@
     "tooltip": true,
     "exec": "~/.config/waybar/modules/weather.sh",
     "exec-if": "ping wttr.in -c1"
+  },
+  "custom/pacman": {
+    "format": "{} {icon}",
+    "return-type": "json",
+    "format-icons": {
+      "pending-updates": "pkg <span font='10' rise='100'>󰮯 </span>",
+      "updated": "00  <span font='10' rise='100'>󰮯 </span>"
+    },
+    "exec-if": "which waybar-updates",
+    "exec": "waybar-updates"
   },
   "custom/artist": {
     "format": "{}",
@@ -198,5 +248,12 @@
     "on-click": "tofi-drun | xargs swaymsg exec --",
     "on-click-right": "wlogout -b 5 -p layer-shell",
     "tooltip": false
+  },
+  "custom/recorder": {
+    "format": "",
+    "return-type": "json",
+    "interval": 1,
+    "exec": "echo '{\"class\": \"recording\"}'",
+    "exec-if": "pgrep wf-recorder"
   }
 }
